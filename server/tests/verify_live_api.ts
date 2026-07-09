@@ -8,7 +8,7 @@ import { ExtractionPipeline } from '../src/shared/ai/extraction-pipeline.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const SAMPLE_DIR = path.resolve(__dirname, '../../docs/sample-data');
+const SAMPLE_DIR = path.resolve(__dirname, './sample-data');
 const csvFiles = [
   'facebook_leads.csv',
   'google_ads.csv',
@@ -63,7 +63,7 @@ async function verifyAll() {
       const outputFilename = filename.replace('.csv', '_output.json');
       const outputPath = path.join(outputDir, outputFilename);
       await fs.writeFile(outputPath, JSON.stringify(outcome, null, 2), 'utf-8');
-      console.log(`\nSaved live response output to: docs/sample-data/output/${outputFilename}`);
+      console.log(`\nSaved live response output to: server/tests/sample-data/output/${outputFilename}`);
 
       // Perform automated checks/assertions on the results
       validateOutcome(filename, outcome);

@@ -66,6 +66,6 @@ node --import tsx --env-file=.env tests/verify_live_api.ts
 ```
 Inside the `server/` directory. This script will:
 1. Load environment variables and the real `GEMINI_API_KEY`.
-2. Read the five CSV datasets in `docs/sample-data/`.
+2. Read the five CSV datasets in `server/tests/sample-data/`.
 3. Parse and map them through a live call to the AI Gateway (routing to `gemini-3.1-flash-lite`).
 4. Execute automated validations to assert that name, email, normalized phone, enums, multiple contacts mapping, and programmatically skipped rows behave correctly.
