@@ -20,13 +20,13 @@ We will use completely **free hosting tiers** for our production deployments:
 ## 2. Environment Configurations
 
 ### Frontend (Vercel Dashboard)
-* `NEXT_PUBLIC_API_URL`: The URL of the deployed backend on Render (e.g. `https://lead-mapper-api.onrender.com`).
+* `NEXT_PUBLIC_API_URL`: The URL of the deployed backend on Render (e.g. `https://lead-mapper.onrender.com`).
 
 ### Backend (Render Dashboard)
 * `PORT`: Automatically set by Render.
 * `NODE_ENV`: `production`
 * `GEMINI_API_KEY`: Google AI Studio API key.
-* `ALLOWED_ORIGIN`: Points to the deployed Vercel frontend URL (e.g. `https://lead-mapper.vercel.app`) to block cross-origin requests.
+* `ALLOWED_ORIGIN`: Points to the deployed Vercel frontend URL (e.g. `https://groweasy-lead-mapper.vercel.app`) to block cross-origin requests.
 
 ---
 

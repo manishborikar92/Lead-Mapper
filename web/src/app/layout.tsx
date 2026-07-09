@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "GrowEasy Lead-Mapper — AI-Powered CRM CSV Importer",
   description: "Upload, preview, and map any messy CSV structure into standard GrowEasy CRM fields instantly using Google Gemini AI routing and fallback networks.",
-  metadataBase: new URL("https://lead-mapper.vercel.app"),
+  metadataBase: new URL("https://groweasy-lead-mapper.vercel.app"),
   icons: {
     icon: "/icon.svg",
     shortcut: "/icon.svg",
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "GrowEasy Lead-Mapper — AI-Powered CRM CSV Importer",
     description: "Upload, preview, and map any messy CSV structure into standard GrowEasy CRM fields instantly using Google Gemini AI routing and fallback networks.",
-    url: "https://lead-mapper.vercel.app",
+    url: "https://groweasy-lead-mapper.vercel.app",
     siteName: "GrowEasy Lead-Mapper",
     images: [
       {
