@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Brand Tokens Scale */
+  --color-ink: #0A0D12;
+  --color-panel: #10151C;
+  --color-panel2: #141B23;
+  --color-line: #212B34;
+  --color-paper: #ECE6D6;
+  --color-signal: #FF7A45;
+  --color-confirm: #4FD1C5;
+  --color-hi: #F3F1EA;
+  --color-mid: #9AA4B1;
+  --color-low: #5F6A76;
+  
+  /* Typography Scale */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Shadow Tokens */
+  --shadow-neon-glow: 0 0 20px rgba(79, 209, 197, 0.1);
+  --shadow-neon-card: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 2px rgba(255, 255, 255, 0.02) inset;
+  
+  /* Motion & Animations */
+  --animate-shimmer: shimmer 1.8s infinite ease-in-out;
+  --animate-float: float 4s infinite ease-in-out;
+  
+  @keyframes shimmer {
+    0% { left: -50%; }
+    100% { left: 100%; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+}
+
+:root {
+  --background: #0A0D12;
+  --foreground: #F3F1EA;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar Utilities */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(20, 27, 35, 0.3);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(79, 209, 197, 0.15);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.01);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 209, 197, 0.3);
+}
+
+/* Accessibility Focus Ring Outline */
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: outline-color 0.2s ease-in-out;
+}
+.focus-ring:focus-visible {
+  outline-color: var(--color-confirm);
+}
+
+/* Reduced Motion Compatibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}

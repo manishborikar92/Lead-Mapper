@@ -1,0 +1,6 @@
+Name,Email,Phone,Date,Notes
+John Multi,john1@example.com; john2@example.com,+91 96666 66666 / +91 96666 66667,15/05/2026 14:00,Has multiple contacts
+Sarah NoContact,No Email here,No Phone number,15-05-2026,This row contains neither email nor mobile and should be skipped!
+Amit Ambiguous,amit@example.com,,May 15th 2026 10AM,Phone is blank but email exists - Keep!
+Vikram OnlyPhone,,+919666666668,2026.05.15,Email is blank but phone exists - Keep!
+Swapped Lead,+919666666669,swapped@example.com,15-05-2026,Email is in phone column and phone is in email column!

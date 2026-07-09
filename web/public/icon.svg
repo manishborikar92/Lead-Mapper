@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" fill="none">
+  <rect x="5" y="5" width="50" height="50" rx="12" fill="#10151C" stroke="#4FD1C5" stroke-width="3" />
+  <!-- Main Chevron Arrow, perfectly centered at (30, 30) -->
+  <path d="M18 42L42 18M42 18V30M42 18H30" stroke="#4FD1C5" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Background Accent Lines, perfectly centered -->
+  <path d="M18 28L28 18M42 32L32 42" stroke="#5F6A76" stroke-width="2" stroke-linecap="round" />
+</svg>

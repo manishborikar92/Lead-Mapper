@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <!-- Option 2: Inset Chevron Arrow Box -->
+  <g transform="translate(10, 10)">
+    <rect x="2" y="2" width="36" height="36" rx="8" fill="#10151C" stroke="#4FD1C5" stroke-width="2" />
+    <path d="M12 28L28 12M28 12V22M28 12H18" stroke="#4FD1C5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M12 18L18 12M28 22L22 28" stroke="#5F6A76" stroke-width="1.5" stroke-linecap="round" />
+  </g>
+  <text x="60" y="28" font-family="'Space Grotesk', sans-serif" font-size="20" font-weight="700" fill="#F3F1EA">GrowEasy</text>
+  <text x="60" y="44" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="600" fill="#4FD1C5" letter-spacing="2">LEAD-MAPPER</text>
+</svg>
