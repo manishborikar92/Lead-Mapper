@@ -47,8 +47,25 @@ We aim for **85%+ code coverage** in critical system layers (CSV parser, Zod val
 
 ## 3. Code Coverage Execution
 
-We will measure code coverage using Node's built-in coverage runner (available in Node.js v22+):
+We measure code coverage using Node's built-in coverage runner:
 ```bash
-node --import tsx --test --experimental-test-coverage "src/features/**/*.test.ts"
+npm run test:coverage --prefix server
 ```
-This prints a clean coverage matrix showing statement, branch, and function coverage statistics in the terminal.
+Which maps to:
+```bash
+node --import tsx --test --experimental-test-coverage "tests/**/*.test.ts"
+```
+
+---
+
+## 4. Live API Verification (Sample Data Suite)
+
+To verify that the application works seamlessly with a real Gemini API key and processes messy columns, locations, date formats, and edge cases, execute:
+```bash
+node --import tsx --env-file=.env tests/verify_live_api.ts
+```
+Inside the `server/` directory. This script will:
+1. Load environment variables and the real `GEMINI_API_KEY`.
+2. Read the five CSV datasets in `docs/sample-data/`.
+3. Parse and map them through a live call to the AI Gateway (routing to `gemini-3.1-flash-lite`).
+4. Execute automated validations to assert that name, email, normalized phone, enums, multiple contacts mapping, and programmatically skipped rows behave correctly.

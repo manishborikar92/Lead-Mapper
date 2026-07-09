@@ -1,0 +1,5 @@
+Inquiry ID,Customer Name,Primary Email,Mobile No.,Project Interested,Possession Timeline,Inquiry Date,Inquiry Status,Lead Owner,Customer Note
+req_301,Anil Sharma,anil.sharma@example.com,+919999999999,Meridian Tower,Under Construction,2026-05-15 16:40:00,Follow up requested,agent.one@groweasy.com,Client is asking to reschedule demo to Sunday morning.
+req_302,Meera Nair,meera.nair@example.com,9999999998,Eden Park,Ready to Move,2026-05-15 17:15:30,Busy will call back,agent.two@groweasy.com,Tried calling twice. Line was busy. Will try again next week.
+req_303,Kabir Mehta,kabir.mehta@example.com,+91-9999999997,Varah Swamy,Ready to Move,2026-05-15 18:00:22,Junk lead,agent.one@groweasy.com,Not interested in plots anymore. Wrong number dialed.
+req_304,Rohan Das,rohan.das@example.com,9999999996,Sarjapur Plots,Ready to Move,2026-05-15 18:30:15,Booking completed,agent.three@groweasy.com,Deal closed. Onboarding and downpayment in progress.

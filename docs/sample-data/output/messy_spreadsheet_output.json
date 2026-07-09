@@ -1,0 +1,59 @@
+{
+  "records": [
+    {
+      "row_index": 0,
+      "name": "Rahul Dravid",
+      "email": "rahul.d@example.com",
+      "mobile_without_country_code": "9777777777",
+      "created_at": "2026-05-14 18:30:00",
+      "crm_note": "Wants 3 BHK on 10th floor",
+      "crm_status": "GOOD_LEAD_FOLLOW_UP",
+      "country_code": "+91",
+      "data_source": null,
+      "company": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "lead_owner": "",
+      "possession_time": "",
+      "description": ""
+    },
+    {
+      "row_index": 1,
+      "name": "Deepika Padukone",
+      "email": "deepika.p@example.com",
+      "mobile_without_country_code": "9777777776",
+      "created_at": "2026-05-15 12:00:00",
+      "crm_note": "Remarks: Interested in Eden Park",
+      "crm_status": "SALE_DONE",
+      "country_code": "+91",
+      "data_source": "eden_park",
+      "company": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "lead_owner": "",
+      "possession_time": "",
+      "description": ""
+    },
+    {
+      "row_index": 2,
+      "name": "Virat Kohli",
+      "email": "virat.k@example.com",
+      "mobile_without_country_code": "9777777775",
+      "created_at": "2026-05-15 18:30:00",
+      "crm_note": "Asked about project meridian tower",
+      "crm_status": "DID_NOT_CONNECT",
+      "country_code": "+91",
+      "data_source": null,
+      "company": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "lead_owner": "",
+      "possession_time": "",
+      "description": ""
+    }
+  ],
+  "skipped": []
+}
