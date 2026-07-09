@@ -1,0 +1,35 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "src/server.ts",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "dev": "tsx watch src/server.ts",
+    "test": "node --import tsx --env-file=.env.test --test \"tests/**/*.test.ts\"",
+    "test:coverage": "node --import tsx --env-file=.env.test --test --experimental-test-coverage \"tests/**/*.test.ts\"",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.6",
+    "csv-parse": "^7.0.1",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "multer": "^2.2.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.2.0",
+    "@types/node": "^26.1.1",
+    "@types/supertest": "^7.2.0",
+    "eslint": "^10.6.0",
+    "globals": "^17.7.0",
+    "supertest": "^7.2.2",
+    "tsx": "^4.23.0",
+    "typescript": "^7.0.2"
+  }
+}
