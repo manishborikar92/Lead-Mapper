@@ -40,3 +40,14 @@ To ensure clean boundaries and ease of review, we will adopt a **Feature-Based M
   * **`app.ts`**: Configures the Express application, registers third-party middleware (CORS, body-parser, file upload handler), binds routers, and sets up central error handling middleware.
   * **`server.ts`**: Entry point that imports `app.ts`, reads environment configurations, and starts the HTTP server. This allows tests to import `app.ts` to execute route validations in-memory without blocking TCP ports.
 * **Async Route Handling**: Express 5.1.0 natively catches rejected promises in middleware and route handlers, passing them directly to the error handling middleware. We do not need external libraries like `express-async-errors`.
+
+---
+
+## 3. AI Gateway & Ingestion Architecture
+To handle quota exhaustion, rate limiting, and redundant requests, the AI mapping layer is divided into specialized modules within the `server/src/shared/ai/` boundary:
+* **Extraction Pipeline**: Slices unresolved items into batches of 20, queries cache, calls Gateway, validates, and merges deterministic mappings.
+* **Deterministic Preprocessing**: Runs Levenshtein fuzzy header matching, normalization, and confidence checks.
+* **Request LRU Cache**: SHA-256 batch mapping, storing only successful verified records.
+* **AI Gateway**: Directs inference failovers, registers model health scores, and handles smart retries.
+* **Provider Abstraction**: Allows adding new providers in the future (like Anthropic/OpenAI) by implementing the `AiProvider` interface.
+

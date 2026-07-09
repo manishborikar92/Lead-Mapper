@@ -1,22 +1,22 @@
 import { Request, Response, NextFunction } from 'express';
-import { CsvService } from './csv.service';
-import { AiService } from './ai.service';
-import { ProcessBatchSchema } from './importer.validator';
-import { AppError } from '../../shared/middlewares/error.middleware';
-import { CRMRecord } from './types';
+import { CsvService } from './csv.service.js';
+import { ExtractionPipeline } from '../../shared/ai/extraction-pipeline.js';
+import { ProcessBatchSchema } from './importer.validator.js';
+import { AppError } from '../../shared/middlewares/error.middleware.js';
+import { CRMRecord } from './types.js';
+import { env } from '../../config/env.config.js';
+import { RoutingPolicy } from '../../shared/ai/types.js';
 
 export class ImporterController {
   private csvService: CsvService;
-  private aiService: AiService;
 
   constructor() {
     this.csvService = new CsvService();
-    this.aiService = new AiService();
   }
 
   /**
    * Endpoint: POST /api/process-batch
-   * Processes a JSON array of raw records via Gemini API mapping.
+   * Processes a JSON array of raw records via AI Gateway routing and Extraction Pipeline.
    */
   public processBatch = async (
     req: Request,
@@ -26,10 +26,11 @@ export class ImporterController {
     try {
       // Validate request body schema
       const { records } = ProcessBatchSchema.parse(req.body);
+      const policy = (req.body.policy || env.DEFAULT_ROUTING_POLICY) as RoutingPolicy;
 
-      console.log(`[INFO] [IMPORTER_CONTROLLER] - Processing batch of ${records.length} records.`);
+      console.log(`[INFO] [IMPORTER_CONTROLLER] - Processing batch of ${records.length} records with policy ${policy}.`);
       
-      const result = await this.aiService.processBatch(records);
+      const result = await ExtractionPipeline.process(records, policy);
 
       res.status(200).json({
         success: true,
@@ -45,8 +46,8 @@ export class ImporterController {
 
   /**
    * Endpoint: POST /api/import
-   * Handles binary file upload, parses CSV, splits records into batches,
-   * processes them with Gemini, and returns consolidated results.
+   * Handles binary file upload, parses CSV, and processes the raw array
+   * via AI Ingestion Pipeline, returning consolidated results.
    */
   public importCsv = async (
     req: Request,
@@ -69,32 +70,18 @@ export class ImporterController {
 
       console.log(`[INFO] [IMPORTER_CONTROLLER] - CSV parsed successfully. Found ${rawRecords.length} raw rows.`);
 
-      // 2. Batch and process via AI service
-      const BATCH_SIZE = 20;
-      const validRecords: CRMRecord[] = [];
-      const skippedRecords: Record<string, any>[] = [];
+      // 2. Route complete CSV array to the Extraction Pipeline which handles internal batching and caching
+      const policy = (req.query.policy || req.body.policy || env.DEFAULT_ROUTING_POLICY) as RoutingPolicy;
+      console.log(`[INFO] [IMPORTER_CONTROLLER] - Running Extraction Pipeline with policy: ${policy}`);
 
-      for (let i = 0; i < rawRecords.length; i += BATCH_SIZE) {
-        const batch = rawRecords.slice(i, i + BATCH_SIZE);
-        console.log(`[INFO] [IMPORTER_CONTROLLER] - Processing internal batch ${Math.floor(i / BATCH_SIZE) + 1} (${batch.length} rows)`);
-        
-        try {
-          const result = await this.aiService.processBatch(batch);
-          validRecords.push(...result.records);
-          skippedRecords.push(...result.skipped);
-        } catch (batchError: any) {
-          console.error(`[ERROR] [IMPORTER_CONTROLLER] - Internal batch processing failed at rows ${i}-${i + batch.length}:`, batchError.message);
-          // For file uploads, if a batch fails completely, we record the raw records in that batch as skipped
-          skippedRecords.push(...batch);
-        }
-      }
+      const result = await ExtractionPipeline.process(rawRecords, policy);
 
       res.status(200).json({
         success: true,
-        totalImported: validRecords.length,
-        totalSkipped: skippedRecords.length,
-        records: validRecords,
-        skipped: skippedRecords
+        totalImported: result.records.length,
+        totalSkipped: result.skipped.length,
+        records: result.records,
+        skipped: result.skipped
       });
     } catch (error) {
       next(error);

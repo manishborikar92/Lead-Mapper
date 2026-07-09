@@ -66,7 +66,7 @@ describe('API Integration Tests', () => {
         {
           "Full Name": "Alice Smith",
           "Email ID": "alice@example.com",
-          "Mobile": "9876543219"
+          "Mobile": "9876543219 / 9876543218"
         }
       ]
     };

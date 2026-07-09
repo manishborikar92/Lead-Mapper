@@ -11,7 +11,7 @@ const envSchema = z.object({
   ),
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   GEMINI_API_KEY: z.string().min(1, 'GEMINI_API_KEY is required for AI operations'),
-  GEMINI_MODEL: z.string().default('gemini-2.5-flash'),
+  DEFAULT_ROUTING_POLICY: z.enum(['HighQuality', 'Balanced', 'HighThroughput', 'EmergencyFallback']).default('Balanced'),
   ALLOWED_ORIGIN: z.string().default('http://localhost:3000')
 });
 

@@ -31,9 +31,10 @@ We aim for **85%+ code coverage** in critical system layers (CSV parser, Zod val
 * **Zod Schema Validation (`importer.validator.ts`)**:
   * Verify validation and coercion of valid records.
   * Verify rejection of malformed schemas (e.g., invalid dates, incorrect status enums).
-* **AI Connector Mocking (`ai.service.ts`)**:
-  * Mock `@google/generative-ai` responses and verify prompt variables and JSON data shaping.
-  * Test skipped row filters (no email and no mobile).
+* **AI Gateway & Pipeline Mocking (`ai.gateway.test.ts`)**:
+  * Mock `callModel` on `GoogleGeminiProvider` to verify fallback routing, cooldown registry logs, and circuit breaker metrics.
+  * Test preprocessor fuzzy mapping and confidence band classifications.
+  * Test Request LRU cache hashing, hit/miss, and eviction limits.
 
 ### Integration Tests
 * **HTTP API Routes (`importer.routes.ts`)**:
