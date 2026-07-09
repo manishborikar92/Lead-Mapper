@@ -43,3 +43,22 @@ The system documentation is organized into modular chapters to ensure maintainab
 
 ### [08-IMPLEMENTATION-PLAN.md](file:///c:/Users/manis/Projects/Lead-Mapper/docs/08-IMPLEMENTATION-PLAN.md)
 * **Milestones**: Breakdown of the development sequence and initialization CLI commands.
+
+### [09-DESIGN-SYSTEM.md](file:///c:/Users/manis/Projects/Lead-Mapper/docs/09-DESIGN-SYSTEM.md)
+* **Design Tokens**: Colors, borders, corners, shadows, spacing, and radius scales.
+* **Motion Tokens**: Animations, transitions, and reduced motion safety controls.
+
+### [10-BRANDING.md](file:///c:/Users/manis/Projects/Lead-Mapper/docs/10-BRANDING.md)
+* **Visual strategy**: Brand guidelines, logo vectors, icon marks, and Open Graph assets.
+
+### [11-ACCESSIBILITY.md](file:///c:/Users/manis/Projects/Lead-Mapper/docs/11-ACCESSIBILITY.md)
+* **A11y Features**: Keyboard navigation, ARIA live regions, semantic table markup, and focus controls.
+
+### [12-PERFORMANCE.md](file:///c:/Users/manis/Projects/Lead-Mapper/docs/12-PERFORMANCE.md)
+* **Audit gains**: Asset minification, tree-shaking, fast Next.js proxying, and page speed metrics.
+
+### [13-SECURITY.md](file:///c:/Users/manis/Projects/Lead-Mapper/docs/13-SECURITY.md)
+* **Ingestion Defenses**: CORS configuration, Content Security Policy (CSP), file filtering, and XSS sanitizations.
+
+### [RELEASE_AUDIT_REPORT.md](file:///c:/Users/manis/Projects/Lead-Mapper/docs/RELEASE_AUDIT_REPORT.md)
+* **Production Excellence**: Comprehensive repository, design, accessibility, security, and performance release audit.

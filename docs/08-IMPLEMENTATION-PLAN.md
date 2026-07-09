@@ -9,10 +9,10 @@
 When moving to Phase 2, we will run the following commands sequentially.
 
 ### A. Frontend Bootstrap (`web/`)
-Create a Next.js App Router project in TypeScript, using npm, with ESLint, without Tailwind, and disabled sub-git setup.
+Create a Next.js App Router project in TypeScript, using npm, with ESLint, with Tailwind CSS enabled, and disabled sub-git setup.
 
 ```bash
-npx create-next-app@latest web --use-npm --typescript --eslint --no-tailwind --src-dir --app --import-alias "@/*" --disable-git --yes
+npx create-next-app@latest web --use-npm --typescript --eslint --tailwind --src-dir --app --import-alias "@/*" --disable-git --yes
 ```
 
 After creation, install additional frontend packages:

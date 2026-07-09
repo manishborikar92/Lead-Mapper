@@ -34,6 +34,7 @@ To ensure clean boundaries and ease of review, we will adopt a **Feature-Based M
   * Ingestion progress counters, batch states, and retry queues.
   * Extracted records, errors, and skipped row trackers.
 * **API clients**: Extracted into clean stateless services.
+* **Frontend Styling System**: Styling is built entirely using **Tailwind CSS** utility classes. Base tokens (obsidian background `#0b0f19`, font families, and animation configurations) are defined in `globals.css` and applied globally via standard Tailwind classes.
 
 ### Backend Routing & Controller Architecture
 * **app.ts vs. server.ts Split**:
