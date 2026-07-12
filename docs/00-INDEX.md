@@ -60,5 +60,9 @@ The system documentation is organized into modular chapters to ensure maintainab
 ### [13-SECURITY.md](file:///c:/Users/manis/Projects/Lead-Mapper/docs/13-SECURITY.md)
 * **Ingestion Defenses**: CORS configuration, Content Security Policy (CSP), file filtering, and XSS sanitizations.
 
+### [14-RESPONSIVE-DESIGN.md](file:///c:/Users/manis/Projects/Lead-Mapper/docs/14-RESPONSIVE-DESIGN.md)
+* **Visual layout**: Layout breakpoints, mobile actions, custom scroll overlays, touch targets, and reduced motion configurations.
+
 ### [RELEASE_AUDIT_REPORT.md](file:///c:/Users/manis/Projects/Lead-Mapper/docs/RELEASE_AUDIT_REPORT.md)
 * **Production Excellence**: Comprehensive repository, design, accessibility, security, and performance release audit.
+

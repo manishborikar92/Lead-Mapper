@@ -6,20 +6,7 @@ import { CSVUpload } from '../features/importer/components/csv-upload';
 import { CSVPreviewTable } from '../features/importer/components/csv-preview-table';
 import { ProgressBar } from '../features/importer/components/progress-bar';
 import { ResultDashboard } from '../features/importer/components/result-dashboard';
-import { Cpu, ShieldCheck, Layers, FileSpreadsheet, Download, CheckCircle2, XCircle } from "lucide-react";
-
-const TOKENS = {
-  ink: "#0A0D12",
-  panel: "#10151C",
-  panel2: "#141B23",
-  line: "#212B34",
-  paper: "#ECE6D6",
-  signal: "#FF7A45",
-  confirm: "#4FD1C5",
-  hi: "#F3F1EA",
-  mid: "#9AA4B1",
-  low: "#5F6A76",
-};
+import { Cpu, ShieldCheck, Layers, FileSpreadsheet, Download, CheckCircle2, XCircle, ArrowUpRight } from "lucide-react";
 
 const FEATURES = [
   {
@@ -40,11 +27,11 @@ const FEATURES = [
 ];
 
 const SAMPLES = [
-  { name: "facebook_leads.csv", tag: "Facebook Ads", href: "/sample-data/facebook_leads.csv" },
-  { name: "google_ads.csv", tag: "Google Ads", href: "/sample-data/google_ads.csv" },
-  { name: "real_estate.csv", tag: "Real Estate CRM", href: "/sample-data/real_estate.csv" },
+  { name: "facebook_leads.csv", tag: "Facebook Ads Export", href: "/sample-data/facebook_leads.csv" },
+  { name: "google_ads.csv", tag: "Google Ads Lead Sheet", href: "/sample-data/google_ads.csv" },
+  { name: "real_estate.csv", tag: "Real Estate CRM Format", href: "/sample-data/real_estate.csv" },
   { name: "messy_spreadsheet.csv", tag: "Messy Spreadsheet", href: "/sample-data/messy_spreadsheet.csv" },
-  { name: "edge_cases.csv", tag: "Swapped columns, skip logic", href: "/sample-data/edge_cases.csv" },
+  { name: "edge_cases.csv", tag: "Swapped Columns & Skip Logic", href: "/sample-data/edge_cases.csv" },
 ];
 
 const MAPPINGS = [
@@ -82,28 +69,13 @@ function MappingConsole() {
     : Array.from({ length: visible }, (_, i) => MAPPINGS[(cursor - visible + 1 + i + MAPPINGS.length) % MAPPINGS.length]);
 
   return (
-    <div
-      className="rounded-2xl overflow-hidden border"
-      style={{ background: TOKENS.panel, borderColor: TOKENS.line }}
-    >
-      <div
-        className="flex items-center justify-between px-4 py-3 border-b"
-        style={{ borderColor: TOKENS.line, background: TOKENS.panel2 }}
-      >
-        <span
-          className="text-[11px] font-medium tracking-wide uppercase"
-          style={{ color: TOKENS.mid, fontFamily: "'JetBrains Mono', monospace" }}
-        >
+    <div className="rounded-2xl overflow-hidden border border-line bg-panel shadow-neon-card animate-slide-up">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-line bg-panel2">
+        <span className="text-[11px] font-bold tracking-wider uppercase text-mid font-mono">
           Mapping console
         </span>
-        <span
-          className="flex items-center gap-1.5 text-[11px]"
-          style={{ color: TOKENS.confirm, fontFamily: "'JetBrains Mono', monospace" }}
-        >
-          <span
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ background: TOKENS.confirm }}
-          />
+        <span className="flex items-center gap-1.5 text-[11px] text-confirm font-mono">
+          <span className="w-1.5 h-1.5 rounded-full bg-confirm animate-pulse" />
           live preview
         </span>
       </div>
@@ -112,37 +84,27 @@ function MappingConsole() {
         {rows.map((row, i) => (
           <div
             key={row.from + i}
-            className="flex items-center gap-3 rounded-lg px-3 py-2.5 border"
-            style={{
-              background: TOKENS.ink,
-              borderColor: TOKENS.line,
-            }}
+            className="flex items-center gap-3 rounded-xl px-3 py-2.5 border border-line bg-ink/60 hover:border-confirm/20 transition-all duration-200"
           >
-            <span
-              className="text-[12px] truncate flex-1"
-              style={{ color: TOKENS.mid, fontFamily: "'JetBrains Mono', monospace" }}
-            >
+            <span className="text-[11px] sm:text-xs truncate flex-1 text-mid font-mono">
               {row.from}
             </span>
-            <span className="text-[13px] shrink-0" style={{ color: TOKENS.low }}>
+            <span className="text-xs shrink-0 text-low font-mono">
               →
             </span>
-            <span
-              className="text-[12px] truncate flex-1 text-right"
-              style={{ color: row.ok ? TOKENS.hi : TOKENS.signal, fontFamily: "'JetBrains Mono', monospace" }}
-            >
+            <span className={`text-[11px] sm:text-xs truncate flex-1 text-right font-mono ${row.ok ? 'text-hi' : 'text-signal'}`}>
               {row.to}
             </span>
-            <span className="shrink-0 w-14 flex items-center justify-end gap-1">
+            <span className="shrink-0 w-14 flex items-center justify-end gap-1 font-mono">
               {row.ok ? (
                 <>
-                  <CheckCircle2 size={13} color={TOKENS.confirm} />
-                  <span className="text-[11px]" style={{ color: TOKENS.confirm, fontFamily: "'JetBrains Mono', monospace" }}>
+                  <CheckCircle2 size={13} className="text-confirm" />
+                  <span className="text-[10px] text-confirm font-bold">
                     {row.confidence}%
                   </span>
                 </>
               ) : (
-                <XCircle size={13} color={TOKENS.signal} />
+                <XCircle size={13} className="text-signal" />
               )}
             </span>
           </div>
@@ -176,7 +138,7 @@ export default function Home() {
       </a>
 
       {/* Navigation Header */}
-      <nav className="sticky top-0 z-40 w-full border-b bg-ink/75 backdrop-blur-md" style={{ borderColor: TOKENS.line }} role="navigation" aria-label="Main Navigation">
+      <nav className="sticky top-0 z-40 w-full border-b border-line bg-ink/80 backdrop-blur-md" role="navigation" aria-label="Main Navigation">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img 
@@ -186,44 +148,42 @@ export default function Home() {
             />
           </div>
 
-          <div className="hidden md:flex items-center gap-6">
+          <div className="flex items-center gap-6">
             <a 
               href="/health" 
               target="_blank" 
               rel="noreferrer" 
-              className="text-sm font-medium hover:text-slate-200 focus-ring rounded px-2.5 py-1"
-              style={{ color: TOKENS.mid }}
+              className="hidden sm:inline-block text-xs font-semibold uppercase tracking-wider text-mid hover:text-hi focus-ring rounded-lg px-3 py-1.5 transition-colors border border-transparent hover:border-line"
             >
               API Status
             </a>
-            <span style={{ color: TOKENS.line }}>|</span>
+            <span className="hidden sm:inline-block text-line">|</span>
             <div 
-              className="flex items-center gap-2.5 border px-3.5 py-1.5 rounded-full"
-              style={{ background: 'rgba(20, 27, 35, 0.4)', borderColor: TOKENS.line }}
+              className="flex items-center gap-2.5 border border-line px-3.5 py-1.5 rounded-full bg-panel2/50"
               aria-live="polite"
               role="status"
             >
               {isConnecting ? (
                 <>
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: TOKENS.signal }}></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: TOKENS.signal }}></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-signal"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-signal"></span>
                   </span>
-                  <span className="text-xs font-semibold" style={{ color: TOKENS.mid }}>Cold-start Active</span>
+                  <span className="text-[11px] font-bold tracking-tight text-mid">Cold-start Active</span>
                 </>
               ) : isConnected ? (
                 <>
                   <span className="relative flex h-2 w-2">
-                    <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: TOKENS.confirm }}></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-confirm"></span>
                   </span>
-                  <span className="text-xs font-semibold" style={{ color: TOKENS.mid }}>API Gateway Online</span>
+                  <span className="text-[11px] font-bold tracking-tight text-mid">API Gateway Online</span>
                 </>
               ) : (
                 <>
                   <span className="relative flex h-2 w-2">
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500 shadow-[0_0_8px_#ef4444]"></span>
                   </span>
-                  <span className="text-xs font-semibold" style={{ color: TOKENS.mid }}>API Offline</span>
+                  <span className="text-[11px] font-bold tracking-tight text-mid">API Offline</span>
                 </>
               )}
             </div>
@@ -232,51 +192,37 @@ export default function Home() {
       </nav>
 
       {/* Main Grid View */}
-      <main id="main-dashboard" className="flex-grow max-w-7xl w-full mx-auto px-6 py-12 flex flex-col justify-start">
+      <main id="main-dashboard" className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12 flex flex-col justify-start">
         {step === 'upload' ? (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
             {/* Left Onboarding / Features column */}
-            <div className="lg:col-span-7 flex flex-col gap-10 pr-0 lg:pr-6">
+            <div className="lg:col-span-7 flex flex-col gap-8 pr-0 lg:pr-4 animate-fade-in">
               <div>
-                <span
-                  className="inline-block px-3 py-1 text-[11px] font-medium uppercase tracking-wider rounded-full border mb-6"
-                  style={{
-                    color: TOKENS.signal,
-                    borderColor: `${TOKENS.signal}40`,
-                    background: `${TOKENS.signal}14`,
-                    fontFamily: "'JetBrains Mono', monospace",
-                  }}
-                >
+                <span className="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border border-signal/25 bg-signal/10 text-signal font-mono mb-6">
                   Ingestion · v2.0
                 </span>
 
-                <h1
-                  className="text-4xl lg:text-[2.75rem] leading-[1.1] mb-4"
-                  style={{ color: TOKENS.hi, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700 }}
-                >
+                <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.15] mb-4 text-hi font-display font-bold tracking-tight">
                   Turn any lead sheet into clean CRM rows
                 </h1>
 
-                <p className="text-[15px] leading-relaxed max-w-lg" style={{ color: TOKENS.mid }}>
+                <p className="text-[14px] sm:text-[15px] leading-relaxed max-w-lg text-mid">
                   Drop in a raw export from any source. Deterministic rules catch the obvious
                   columns first — Gemini only reads what's left.
                 </p>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-6">
                 {FEATURES.map(({ icon: Icon, title, body }) => (
-                  <div key={title} className="flex gap-4 items-start">
-                    <div
-                      className="p-2 rounded-lg shrink-0 mt-0.5"
-                      style={{ background: `${TOKENS.confirm}14`, color: TOKENS.confirm }}
-                    >
+                  <div key={title} className="flex gap-4 items-start group">
+                    <div className="p-2.5 rounded-xl shrink-0 bg-confirm/10 text-confirm transition-colors group-hover:bg-confirm/15 duration-200">
                       <Icon size={16} />
                     </div>
                     <div>
-                      <h3 className="text-[14px] font-semibold" style={{ color: TOKENS.hi }}>
+                      <h3 className="text-sm font-bold text-hi tracking-tight">
                         {title}
                       </h3>
-                      <p className="text-[13px] mt-1 leading-relaxed" style={{ color: TOKENS.mid }}>
+                      <p className="text-[12.5px] sm:text-[13px] mt-1 leading-relaxed text-mid">
                         {body}
                       </p>
                     </div>
@@ -284,44 +230,34 @@ export default function Home() {
                 ))}
               </div>
 
-              <div
-                className="rounded-2xl border p-5"
-                style={{ background: TOKENS.panel, borderColor: TOKENS.line }}
-              >
-                <div className="flex items-center gap-2 mb-1">
-                  <FileSpreadsheet size={15} style={{ color: TOKENS.signal }} />
-                  <h4 className="text-[13px] font-semibold" style={{ color: TOKENS.hi }}>
+              <div className="rounded-2xl border border-line p-5 sm:p-6 bg-panel shadow-neon-card">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <FileSpreadsheet size={16} className="text-signal" />
+                  <h4 className="text-sm font-bold text-hi tracking-tight">
                     Try it with real mess
                   </h4>
                 </div>
-                <p className="text-[12px] mb-4" style={{ color: TOKENS.low }}>
-                  Five exports built to stress-test the mapper.
+                <p className="text-[12px] mb-4 text-low">
+                  Five exports built to stress-test the mapper. Download and try importing.
                 </p>
 
-                <div className="divide-y" style={{ borderColor: TOKENS.line }}>
+                <div className="divide-y divide-line/20">
                   {SAMPLES.map((s) => (
                     <a
                       key={s.name}
                       href={s.href}
                       download
-                      className="flex items-center justify-between py-3 group first:pt-0 last:pb-0"
-                      style={{ borderColor: TOKENS.line }}
+                      className="flex items-center justify-between py-3.5 group first:pt-0 last:pb-0 focus-ring rounded-lg"
                     >
                       <div className="min-w-0">
-                        <p
-                          className="text-[12.5px] truncate"
-                          style={{ color: TOKENS.hi, fontFamily: "'JetBrains Mono', monospace" }}
-                        >
+                        <p className="text-xs sm:text-[13px] truncate text-hi font-mono group-hover:text-confirm transition-colors">
                           {s.name}
                         </p>
-                        <p className="text-[11px] mt-0.5" style={{ color: TOKENS.low }}>
+                        <p className="text-[11px] mt-0.5 text-low">
                           {s.tag}
                         </p>
                       </div>
-                      <span
-                        className="shrink-0 ml-4 p-1.5 rounded-md border transition-colors hover:bg-panel2/50"
-                        style={{ borderColor: TOKENS.line, color: TOKENS.mid }}
-                      >
+                      <span className="shrink-0 ml-4 p-2 rounded-xl border border-line bg-panel2/30 text-mid transition-all hover:bg-panel2 hover:text-hi">
                         <Download size={13} />
                       </span>
                     </a>
@@ -331,11 +267,8 @@ export default function Home() {
             </div>
 
             {/* Right Upload Panel + MappingConsole */}
-            <div className="lg:col-span-5 lg:sticky lg:top-10 flex flex-col gap-6">
-              <div 
-                className="border rounded-3xl p-8 backdrop-blur-xl shadow-neon-card"
-                style={{ background: TOKENS.panel, borderColor: TOKENS.line }}
-              >
+            <div className="lg:col-span-5 lg:sticky lg:top-24 flex flex-col gap-6">
+              <div className="border border-line rounded-3xl p-6 sm:p-8 bg-panel shadow-neon-card">
                 <CSVUpload 
                   onFileSelect={handleFileSelect} 
                   error={importError} 
@@ -344,17 +277,14 @@ export default function Home() {
 
               <MappingConsole />
               
-              <p className="text-[11px] leading-relaxed" style={{ color: TOKENS.low }}>
+              <p className="text-[11px] leading-relaxed text-low">
                 A sample of what the mapper does to each row of an upload — matched fields,
                 confidence, and anything it chose to leave out.
               </p>
             </div>
           </div>
         ) : (
-          <div 
-            className="border rounded-3xl p-6 sm:p-10 backdrop-blur-xl shadow-neon-card flex-grow"
-            style={{ background: TOKENS.panel, borderColor: TOKENS.line }}
-          >
+          <div className="border border-line rounded-3xl p-5 sm:p-8 md:p-10 bg-panel shadow-neon-card flex-grow min-h-[400px] flex flex-col justify-start">
             {step === 'preview' && (
               <CSVPreviewTable
                 headers={rawHeaders}
@@ -383,8 +313,8 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t py-6 text-center" style={{ borderColor: TOKENS.line }} role="contentinfo">
-        <p className="text-xs" style={{ color: TOKENS.low }}>
+      <footer className="w-full border-t border-line py-6 text-center bg-panel/30" role="contentinfo">
+        <p className="text-xs text-low">
           &copy; {new Date().getFullYear()} GrowEasy CRM. Powered by Google Gemini. All Rights Reserved.
         </p>
       </footer>

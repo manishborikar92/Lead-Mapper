@@ -20,12 +20,15 @@
   --font-mono: 'JetBrains Mono', monospace;
   
   /* Shadow Tokens */
-  --shadow-neon-glow: 0 0 20px rgba(79, 209, 197, 0.1);
-  --shadow-neon-card: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 2px rgba(255, 255, 255, 0.02) inset;
+  --shadow-neon-glow: 0 0 24px rgba(79, 209, 197, 0.15);
+  --shadow-neon-card: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 2px rgba(255, 255, 255, 0.03) inset;
+  --shadow-inner-glow: inset 0 0 12px rgba(79, 209, 197, 0.05);
   
   /* Motion & Animations */
-  --animate-shimmer: shimmer 1.8s infinite ease-in-out;
-  --animate-float: float 4s infinite ease-in-out;
+  --animate-shimmer: shimmer 2s infinite ease-in-out;
+  --animate-float: float 5s infinite ease-in-out;
+  --animate-fade-in: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-slide-up: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   
   @keyframes shimmer {
     0% { left: -50%; }
@@ -33,13 +36,22 @@
   }
   @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
+    50% { transform: translateY(-5px); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }
 
 :root {
   --background: #0A0D12;
   --foreground: #F3F1EA;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -47,37 +59,51 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom Scrollbar Utilities */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(79, 209, 197, 0.2) rgba(20, 27, 35, 0.3);
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(20, 27, 35, 0.3);
+  background: rgba(20, 27, 35, 0.4);
   border-radius: 9999px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(79, 209, 197, 0.15);
+  background: rgba(79, 209, 197, 0.2);
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  transition: background-color 0.2s ease;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(79, 209, 197, 0.3);
+  background: rgba(79, 209, 197, 0.35);
 }
 
 /* Accessibility Focus Ring Outline */
 .focus-ring {
   outline: 2px solid transparent;
   outline-offset: 2px;
-  transition: outline-color 0.2s ease-in-out;
+  transition: outline-color 0.15s ease-in-out;
 }
 .focus-ring:focus-visible {
   outline-color: var(--color-confirm);
+}
+
+/* Scroll-indicator shadows */
+.scroll-shadow-right {
+  box-shadow: inset -12px 0 12px -12px rgba(0, 0, 0, 0.8);
 }
 
 /* Reduced Motion Compatibility */
